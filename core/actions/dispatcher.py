@@ -1,7 +1,6 @@
 import json
 from core.actions import handlers
 
-# Mapa de ações disponíveis
 ACTION_MAP = {
     "abrir_url":     handlers.abrir_url,
     "criar_pasta":   handlers.criar_pasta,
@@ -12,10 +11,6 @@ ACTION_MAP = {
 
 
 def parse_action(raw_response: str) -> dict | None:
-    """
-    Tenta extrair um bloco JSON de ação da resposta do modelo.
-    Retorna o dict se encontrar, None caso contrário.
-    """
     start = raw_response.find("{")
     end = raw_response.rfind("}") + 1
     if start == -1 or end == 0:
@@ -32,10 +27,6 @@ def parse_action(raw_response: str) -> dict | None:
 
 
 def dispatch(action_data: dict) -> str:
-    """
-    Recebe o dict de ação e executa o handler correspondente.
-    Retorna o resultado como string para ser exibido/lido pelo TTS.
-    """
     action = action_data.get("action")
     params = action_data.get("params", {})
 

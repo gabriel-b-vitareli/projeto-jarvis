@@ -32,7 +32,6 @@ def abrir_pasta(caminho: str) -> str:
     path = Path(caminho).expanduser()
     if not path.exists():
         return f"Caminho não encontrado: {path}"
-    # Funciona no Windows, Linux e macOS
     if os.name == "nt":
         os.startfile(str(path))
     elif os.uname().sysname == "Darwin":
